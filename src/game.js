@@ -1,6 +1,7 @@
 class Game{
   constructor() {
-    [
+    this.currentTurn = 0;
+    this.board  = [
       {
         id: 1,
         icon: '',
@@ -45,7 +46,17 @@ class Game{
       id: 9,
       icon: '',
       closed: false,
+    },
+  ];
+
+  }
+  changeTurn(){
+    if(this.currentTurn === 0){
+      this.currentTurn +=1
+    }else{
+      this.currentTurn -=1
+
     }
-    ]
+    
   }
 }
