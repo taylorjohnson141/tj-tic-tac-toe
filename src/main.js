@@ -4,6 +4,9 @@ game;
 
 window.addEventListener('load', function () {
   game = initGame();
+  game.playerOne.retrieveWinsFromStorage()
+  game.playerTwo.retrieveWinsFromStorage()
+
 });
 
 
