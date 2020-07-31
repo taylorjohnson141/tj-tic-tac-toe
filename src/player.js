@@ -8,10 +8,12 @@ addWin(win) {
   this.wins += win;
 }
 saveWinsToStorage() {
-  localStorage.setItem('1',JSON.stringify(this.wins);
+    localStorage.setItem(id,JSON.stringify(this.wins);
 }
 retrieveWinsFromStorage(){
-  localStorage.JSON.parse(getItem('1',this.wins));
+  if(this.localStorage.length !==0){
+  localStorage.JSON.parse(getItem(id,this.wins));
+}
 }
 
 }
