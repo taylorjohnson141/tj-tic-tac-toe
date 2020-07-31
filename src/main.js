@@ -1,7 +1,9 @@
-document.querySelector('wrapper');
+var uigameBoard = document.querySelector('.wrapper');
 
-game;
-
+var game;
+uigameBoard.addEventListener('click',function(){
+  console.log(event.target)
+})
 window.addEventListener('load', function () {
   game = initGame();
   game.playerOne.retrieveWinsFromStorage()
