@@ -1,6 +1,6 @@
-document.querySelector('wrapper');
+var gameWrapper = document.querySelector('.wrapper');
 
-game;
+var game;
 
 window.addEventListener('load', function () {
   game = initGame();
@@ -8,11 +8,15 @@ window.addEventListener('load', function () {
   game.playerTwo.retrieveWinsFromStorage()
 
 });
-wrapper.addEventListener('click',function(){
-  if(game.board[event.target.data.id].closed !==true){
-    console.log(event.target)
-    game.board[event.target.data.id].icon = game.currentPlayer.icon
-    game.board[event.target.data.id].closed = true
+gameWrapper.addEventListener('click',function(){
+  game.checkTurn()
+  var location = parseInt(event.target.dataset['id']) -1
+  if(game.board[location].closed !==true){
+    game.board[location].icon = game.currentPlayer.icon
+    game.board[location].closed = true
+  }
+  else{
+    console.log('closed')
   }
 })
 

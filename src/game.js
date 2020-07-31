@@ -78,4 +78,14 @@ class Game{
       this.currentPlayer  = this.playerTwo;
     }
   }
+  checkWins(){
+    var closed = this.board.filter(function(board){
+      if(board.closed){
+        return board
+      }
+    })
+    if(closed.length === 9){
+      console.log('draw')
+    }
+  }
 }
