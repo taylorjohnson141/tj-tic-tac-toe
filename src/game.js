@@ -4,7 +4,16 @@ class Game{
     this.playerOne = playerOne;
     this.playerTwo = playerTwo;
     this.currentPlayer;
-    this.winPatterns = [[1,2,3],[4,5,6],[7,8,9],[1,4,7],[2,5,8],[3,6,9],[1,5,9],[3,5,7]]
+    this.winPatterns = [
+     [1, 2, 3],
+     [4, 5, 6],
+     [7, 8, 9],
+     [1, 4, 7],
+     [2, 5, 8],
+     [3, 6, 9],
+     [1, 5, 9],
+     [3, 5, 7],
+   ];
     this.board  = [
       {
         id: 1,
@@ -55,7 +64,7 @@ class Game{
 
   }
   changeTurn(){
-    if(this.currentTurn === 0){
+    if(this.currentTurn === 0) {
       this.currentTurn += 1;
     }else{
       this.currentTurn -= 1;
@@ -63,7 +72,7 @@ class Game{
     }
   }
   checkTurn(){
-    if(this.currentTurn === 0){
+    if(this.currentTurn === 0) {
       this.currentPlayer  = this.playerOne;
     }else{
       this.currentPlayer  = this.playerTwo;
