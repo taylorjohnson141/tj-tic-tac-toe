@@ -3,6 +3,7 @@ document.querySelector('wrapper');
 game;
 
 window.addEventListener('load', function () {
+  
   game = initGame();
 });
 
