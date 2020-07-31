@@ -84,6 +84,16 @@ class Game{
         return board
       }
     })
+    var playerOneSpots = this.board.filter(function(board){
+      if(board.icon === playerTwo.icon){
+        return board
+      }
+      var playerTwoSpots= this.board.filter(function(board){
+        if(board.icon === playerTwo.icon ){
+          return board
+        }
+      })
+    console.log(closed.length)
     if(closed.length === 9){
       console.log('draw')
     }
