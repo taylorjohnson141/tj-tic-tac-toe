@@ -1,0 +1,27 @@
+.wrapper{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 100%;
+  border: 8px solid green;
+
+}
+.game-board{
+  background-color: red;
+  border: 2px solid blue;
+}
+.player-one{
+  background-color: red;
+  border: 2px solid blue;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+
+}
+.player-two{
+  background-color: red;
+  border: 2px solid blue;
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+}

@@ -1,5 +1,5 @@
 class Game{
-  constructor(playerOne, PlayerTwo) {
+  constructor(playerOne, playerTwo) {
     this.currentTurn = 0;
     this.currentPlayer;
     this.board  = [
@@ -53,9 +53,9 @@ class Game{
   }
   changeTurn(){
     if(this.currentTurn === 0){
-      this.currentTurn +=1
+      this.currentTurn += 1;
     }else{
-      this.currentTurn -=1
+      this.currentTurn -= 1;
 
     }
   }
@@ -63,7 +63,7 @@ class Game{
     if(this.currentTurn === 0){
       this.currentPlayer  = playerOne;
     }else{
-      this.currentPlayer  = playerTwo
+      this.currentPlayer  = playerTwo;
     }
   }
 }
