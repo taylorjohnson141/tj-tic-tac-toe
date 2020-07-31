@@ -1,6 +1,8 @@
 class Game{
   constructor(playerOne, playerTwo) {
     this.currentTurn = 0;
+    this.playerOne = playerOne;
+    this.playerTwo = playerTwo;
     this.currentPlayer;
     this.board  = [
       {
@@ -61,9 +63,9 @@ class Game{
   }
   checkTurn(){
     if(this.currentTurn === 0){
-      this.currentPlayer  = playerOne;
+      this.currentPlayer  = this.playerOne;
     }else{
-      this.currentPlayer  = playerTwo;
+      this.currentPlayer  = this.playerTwo;
     }
   }
 }
