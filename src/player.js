@@ -2,16 +2,16 @@ class Player {
 constructor(id,token,wins){
 this.id = id,
 this.token = token,
-this.wins = []
+this.wins = wins
 }
 addWin(win) {
-this.wins.push(win)
+  this.wins += win;
 }
-saveWinsToStorage(){
-  localStorage.setItem('1',this.wins);
+saveWinsToStorage() {
+  localStorage.setItem('1',JSON.stringify(this.wins);
 }
 retrieveWinsFromStorage(){
-  localStorage.getItem('1',this.wins);
+  localStorage.JSON.parse(getItem('1',this.wins));
 }
 
 }
