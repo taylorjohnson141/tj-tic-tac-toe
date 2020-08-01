@@ -5,16 +5,24 @@ this.icon = icon,
 this.wins = wins
 }
 addWin() {
-  this.wins += 1;
+  this.wins ++;
 }
 
 saveWinsToStorage() {
-  localStorage.setItem(id,JSON.stringify(this.wins));
+  localStorage.setItem(this.id,this.wins);
 }
 retrieveWinsFromStorage(){
-  if(localStorage.length !==0){
-  var winsInlocal = localStorage.JSON.parse(getItem(id,this.wins));
-  this.wins += parseInt(winsInlocal)
+console.log(localStorage)
+  if(localStorage.length !==0 ){
+  var winsInlocal = localStorage.getItem(this.id);
+  console.log(winsInlocal)
+  if(winsInlocal !== undefined){
+   this.wins += parseInt(winsInlocal)
+   return this.wins
+}
+}
+else {
+  return 0
 }
 }
 
