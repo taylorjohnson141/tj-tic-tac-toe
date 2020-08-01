@@ -88,14 +88,14 @@ class Game{
       }
     });
 
-    var currentPlayerSpots = this.board.filter(function (board) {
-      if (board.icon === this.currentPlayer.icon) {
-        return board.id;
-        
+    var currentPlayerSpots = []
+    for (var i = 0; i<this.board.length; i++) {
+      if (this.board[i].icon === this.currentPlayer.icon) {
+        currentPlayerSpots.push(this.board[i].id);
       }
-    }.bind(this));
+    }
 
-    console.log(currentPlayerSpots);
+
     for (var i = 0; i < this.winPatterns.length; i++) {
       if (currentPlayerSpots.includes(this.winPatterns[i][0]) && currentPlayerSpots.includes(this.winPatterns[i][1])  && currentPlayerSpots.includes(this.winPatterns[i][2])) {
         return true;

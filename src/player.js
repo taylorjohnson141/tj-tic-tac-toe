@@ -1,17 +1,17 @@
 class Player {
-constructor(id,token,wins){
+constructor(id,icon,wins){
 this.id = id,
-this.token = token,
+this.icon = icon,
 this.wins = wins
 }
 addWin(win) {
   this.wins += win;
 }
 saveWinsToStorage() {
-    localStorage.setItem(id,JSON.stringify(this.wins);
+  localStorage.setItem(id,JSON.stringify(this.wins));
 }
 retrieveWinsFromStorage(){
-  if(this.localStorage.length !==0){
+  if(localStorage.length !==0){
   localStorage.JSON.parse(getItem(id,this.wins));
 }
 }
