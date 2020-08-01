@@ -1,5 +1,5 @@
 var gameWrapper = document.querySelector('.wrapper');
-
+var gameBoard =  gameWrapper.querySelectorAll('.game-board')
 var game;
 
 
@@ -13,11 +13,10 @@ window.addEventListener('load', function () {
 gameWrapper.addEventListener('click', function () {
   var children = gameWrapper.children;
   var location = parseInt(event.target.dataset['id']) - 1;
-  if(game.board[location].closed !== true) {
+  if (game.board[location].closed !== true) {
     game.checkTurn();
     game.board[location].icon = game.currentPlayer.icon;
-    children[location].classList.toggle(`${game.currentPlayer.icon}`);
-
+    gameBoard[location].classList.add(`${game.currentPlayer.icon}`);
     console.log(game.board[location].icon);
     game.board[location].closed = true;
     var result = game.checkWins();
@@ -37,7 +36,7 @@ gameWrapper.addEventListener('click', function () {
       game.changeTurn();
     }
 
-  }else{
+  }else {
     console.log('Helo');
     return;
   }
@@ -47,6 +46,8 @@ gameWrapper.addEventListener('click', function () {
 function initGame() {
   var playerOne = new Player(1, 'a', 0);
   var playerTwo = new Player(2, 'b', 0);
-
+  gameBoard.forEach(function(spot){
+    spot.classList = ''
+  })
   return new Game(playerOne, playerTwo);
 }
