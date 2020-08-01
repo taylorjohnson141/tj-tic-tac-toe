@@ -8,16 +8,30 @@ window.addEventListener('load', function () {
   game.playerTwo.retrieveWinsFromStorage()
 
 });
+
 gameWrapper.addEventListener('click',function(){
-  game.checkTurn()
   var location = parseInt(event.target.dataset['id']) -1
-  if(game.board[location].closed !==true){
-    game.board[location].icon = game.currentPlayer.icon
-    game.board[location].closed = true
+  if(game.board[location].closed !== true) {
+    game.checkTurn();
+    game.board[location].icon = game.currentPlayer.icon;
+    console.log(game.board[location].icon)
+    game.board[location].closed = true;
+    var result = game.checkWins();
+
+    if(result === 'draw'){
+      console.log('draw')
+    }
+    if (result) {
+      console.log('WIN')
+      game.currentPlayer.addWin()
+      console.log(game.currentPlayer.wins)
+    }
+    if(result === false){
+      console.log('keep goin')
+    }
+
   }
-  else{
-    console.log('closed')
-  }
+
 })
 
 function initGame() {
