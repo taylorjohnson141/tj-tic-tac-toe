@@ -1,13 +1,14 @@
 var gameWrapper = document.querySelector('.wrapper');
 var gameBoard =  gameWrapper.querySelectorAll('.game-board')
 var game;
-
+var playerOneWins = document.querySelector('.player-one');
+var playerTwoWins = document.querySelector('.player-two')
 
 window.addEventListener('load', function () {
   game = initGame();
   game.playerOne.retrieveWinsFromStorage();
-  game.playerTwo.retrieveWinsFromStorage();
-
+  playerOneWins.innerText += game.playerOne.retrieveWinsFromStorage();
+  playerTwoWins.innerText += game.playerTwo.retrieveWinsFromStorage()
 });
 
 gameWrapper.addEventListener('click', function () {
@@ -29,6 +30,7 @@ gameWrapper.addEventListener('click', function () {
     if (result === true) {
       console.log('WIN');
       game.currentPlayer.addWin();
+      game.currentPlayer.saveWinsToStorage()
       game = initGame();
     }
     if(result === false) {
@@ -46,8 +48,10 @@ gameWrapper.addEventListener('click', function () {
 function initGame() {
   var playerOne = new Player(1, 'a', 0);
   var playerTwo = new Player(2, 'b', 0);
+  if(playerOne.wins >1 || playerTwo.wins>1){
   gameBoard.forEach(function(spot){
     spot.classList = ''
   })
+}
   return new Game(playerOne, playerTwo);
 }
