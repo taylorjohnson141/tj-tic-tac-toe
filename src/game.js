@@ -65,9 +65,9 @@ class Game{
 
   }
   changeTurn() {
-    if(this.currentTurn === 0) {
+    if (this.currentTurn === 0) {
       this.currentTurn += 1;
-    }else{
+    }else {
       this.currentTurn -= 1;
 
     }
@@ -88,7 +88,7 @@ class Game{
       }
     });
 
-    var currentPlayerSpots = []
+    var currentPlayerSpots = [];
     for (var i = 0; i < this.board.length; i++) {
       if (this.board[i].icon === this.currentPlayer.icon) {
         currentPlayerSpots.push(this.board[i].id);
@@ -106,6 +106,20 @@ class Game{
     }
 
     return false;
+  }
+  saveGameToStorage() {
+    localStorage.setItem('currentGame',JSON.stringify(this))
+  }
+  retrieveGameFromStorage() {
+    if(localStorage.getItem('currentGame')!== null){
+    var game = localStorage.getItem('currentGame')
+     game =  JSON.parse(game)
+     return game.board
+  }
+  }
+  removeGameFromLocalStorage() {
+    localStorage.removeItem('currentGame')
+
   }
 
 }

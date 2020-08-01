@@ -15,7 +15,6 @@ retrieveWinsFromStorage(){
 console.log(localStorage)
   if(localStorage.length !==0 ){
   var winsInlocal = localStorage.getItem(this.id);
-  console.log(winsInlocal)
   if(winsInlocal !== undefined){
    this.wins += parseInt(winsInlocal)
    return this.wins
