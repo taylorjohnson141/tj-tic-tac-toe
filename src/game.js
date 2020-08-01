@@ -89,7 +89,7 @@ class Game{
     });
 
     var currentPlayerSpots = []
-    for (var i = 0; i<this.board.length; i++) {
+    for (var i = 0; i < this.board.length; i++) {
       if (this.board[i].icon === this.currentPlayer.icon) {
         currentPlayerSpots.push(this.board[i].id);
       }
@@ -107,4 +107,5 @@ class Game{
 
     return false;
   }
+
 }
