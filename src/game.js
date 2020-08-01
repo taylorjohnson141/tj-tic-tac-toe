@@ -1,3 +1,4 @@
+
 class Game{
   constructor(playerOne, playerTwo) {
     this.currentTurn = 0;
@@ -63,7 +64,7 @@ class Game{
   ];
 
   }
-  changeTurn(){
+  changeTurn() {
     if(this.currentTurn === 0) {
       this.currentTurn += 1;
     }else{
@@ -71,31 +72,39 @@ class Game{
 
     }
   }
-  checkTurn(){
-    if(this.currentTurn === 0) {
+
+  checkTurn() {
+    if (this.currentTurn === 0) {
       this.currentPlayer  = this.playerOne;
-    }else{
+    }else {
       this.currentPlayer  = this.playerTwo;
     }
   }
-  checkWins(){
-    var closed = this.board.filter(function(board){
-      if(board.closed){
-        return board
+
+  checkWins() {
+    var closed = this.board.filter(function (board) {
+      if (board.closed) {
+        return board;
       }
-    })
-    var playerOneSpots = this.board.filter(function(board){
-      if(board.icon === playerTwo.icon){
-        return board
+    });
+
+    var currentPlayerSpots = this.board.filter(function (board) {
+      if (board.icon === this.currentPlayer.icon) {
+        return board.id;
+        
       }
-      var playerTwoSpots= this.board.filter(function(board){
-        if(board.icon === playerTwo.icon ){
-          return board
-        }
-      })
-    console.log(closed.length)
-    if(closed.length === 9){
-      console.log('draw')
+    }.bind(this));
+
+    console.log(currentPlayerSpots);
+    for (var i = 0; i < this.winPatterns.length; i++) {
+      if (currentPlayerSpots.includes(this.winPatterns[i][0]) && currentPlayerSpots.includes(this.winPatterns[i][1])  && currentPlayerSpots.includes(this.winPatterns[i][2])) {
+        return true;
+      }
+      }
+    if (closed.length === 9) {
+      return 'draw';
     }
+
+    return false;
   }
 }
