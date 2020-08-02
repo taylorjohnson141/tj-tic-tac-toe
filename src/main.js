@@ -1,6 +1,7 @@
 var gameWrapper = document.querySelector('.wrapper');
 var gameBoard =  gameWrapper.querySelectorAll('.game-board');
 var game;
+var overlay = document.querySelector('.overlay')
 var playerOneWins = document.querySelector('.player-one');
 var playerTwoWins = document.querySelector('.player-two');
 
@@ -10,46 +11,50 @@ window.addEventListener('load', function () {
     playerOneWins.innerText += game.playerOne.retrieveWinsFromStorage();
     playerTwoWins.innerText += game.playerTwo.retrieveWinsFromStorage();
   }
-  else {
-    game = initGame();
-    game.board = game.retrieveGameFromStorage()
-    updateHTML();
-    playerOneWins.innerText += game.playerOne.retrieveWinsFromStorage();
-    playerTwoWins.innerText += game.playerTwo.retrieveWinsFromStorage();
-  }
+  // else {
+  //   game = initGame();
+  //   game.board = game.retrieveGameFromStorage()
+  //   updateHTML();
+  //   playerOneWins.innerText += game.playerOne.retrieveWinsFromStorage();
+  //   playerTwoWins.innerText += game.playerTwo.retrieveWinsFromStorage();
+  // }
 });
 
 gameWrapper.addEventListener('click', function () {
   var location = parseInt(event.target.dataset['id']) - 1;
+  console.log(game.board)
   if (game.board[location].closed !== true && game.board !== undefined) {
     game.checkTurn();
     game.board[location].icon = game.currentPlayer.icon;
     gameBoard[location].classList.add(`${game.currentPlayer.icon}`);
     console.log(game.board[location].icon);
     game.board[location].closed = true;
-    [location].disabled = true;
     var result = game.checkWins();
 
     if(result === 'draw') {
       console.log('draw');
-      game.removeGameFromLocalStorage();
+      // addOverlay()
       clearHTMLafterTwoSecond();
+      game.removeGameFromLocalStorage();
       game = initGame();
-
 
     }
     if (result === true) {
       console.log('WIN');
+      // addOverlay()
       game.currentPlayer.addWin();
       game.currentPlayer.saveWinsToStorage()
-      game.removeGameFromLocalStorage()
+      // turnOffClicks(gameBoard,result);
       clearHTMLafterTwoSecond()
+      game.removeGameFromLocalStorage()
       game = initGame();
+
+
     }
     if (result === false) {
       console.log('keep goin');
       game.changeTurn();
-      if(game.board === initGame().board) {
+      if (game.board === initGame().board) {
         return
       }
       game.saveGameToStorage()
@@ -67,8 +72,8 @@ function initGame() {
   var playerTwo = new Player(2, 'b', 0);
   return new Game(playerOne, playerTwo);
 }
-function clearHTML(){
-  if(game === undefined){
+function clearHTML() {
+  if (game === undefined){
     return
   }
   gameBoard.forEach(function (spot) {
@@ -77,10 +82,10 @@ function clearHTML(){
 }
 
 function updateHTML() {
-  if(game.board === undefined){
+  if (game.board === undefined) {
     return
   }
-  game.board.forEach(function (board,i) {
+  game.board.forEach(function (board, i) {
     gameBoard[i].closed = board.closed
     if (board.icon === '') {
       return
@@ -89,11 +94,20 @@ function updateHTML() {
 
   })
 }
-function clearHTMLafterTwoSecond (){
-  window.setTimeout(clearHTML,2000);
+function clearHTMLafterTwoSecond() {
+  addOverlay()
+  window.setTimeout(clearHTML, 2000);
+  window.setTimeout(removeOverlay, 2000)
 }
 function disableBoard() {
   gameBoard.forEach(function (spot) {
     spot.disabled = true;
-  })
+  });
+}
+function addOverlay(){
+  overlay.classList.remove('hidden')
+}
+function removeOverlay(){
+  overlay.classList.add('hidden')
+
 }
