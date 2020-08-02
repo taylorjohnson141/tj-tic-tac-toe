@@ -119,7 +119,6 @@ class Game{
   }
   removeGameFromLocalStorage() {
     localStorage.removeItem('currentGame')
-
   }
 
 }
