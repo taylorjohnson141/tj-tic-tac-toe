@@ -1,20 +1,33 @@
 class Player {
-constructor(id,token,wins){
+constructor(id,icon,wins){
 this.id = id,
-this.token = token,
-this.wins = wins
+this.icon = icon,
+this.wins = this.retrieveWinsFromStorage()
 }
-addWin(win) {
-  this.wins += win;
+addWin() {
+  this.wins ++;
 }
+
 saveWinsToStorage() {
-  localStorage.setItem('1',JSON.stringify(this.wins));
+  localStorage.setItem(this.id,this.wins);
 }
 retrieveWinsFromStorage(){
-  if(localStorage.length === 0 ){
-    return
-  }
-  localStorage.JSON.parse(getItem('1',this.wins));
+  if(localStorage.length !==0 ){
+  var winsInlocal = localStorage.getItem(this.id);
+
+  if(winsInlocal !== undefined ||winsInlocal !== null ){
+    console.log('wins in local',parseInt(winsInlocal))
+   this.wins = parseInt(winsInlocal)
+   if(isNaN(parseInt(winsInlocal))){
+     return 0
+   }
+   console.log('all wins',this.wins)
+   return this.wins
+}
+}
+else {
+  return 0
+}
 }
 
 }
