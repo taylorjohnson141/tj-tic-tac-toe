@@ -11,13 +11,13 @@ window.addEventListener('load', function () {
   if (localStorage.key('currentGame') === undefined || localStorage.key('currentGame') === null || game.retrieveGameFromStorage() === undefined ) {
     addWinstoPlayers()
   }
-  // else {
-  //   game = initGame();
-  //   game.board = game.retrieveGameFromStorage()
-  //   updateHTML();
-  //   playerOneWins.innerText += game.playerOne.retrieveWinsFromStorage();
-  //   playerTwoWins.innerText += game.playerTwo.retrieveWinsFromStorage();
-  // }
+  else {
+    game = initGame();
+    game.board = game.retrieveGameFromStorage()
+    updateHTML();
+    playerOneWins.innerText += game.playerOne.retrieveWinsFromStorage();
+    playerTwoWins.innerText += game.playerTwo.retrieveWinsFromStorage();
+  }
 });
 clearWinsButton.addEventListener('click', clearLocalStorage)
 clearBoardButton.addEventListener('click',function(){
