@@ -1,30 +1,38 @@
+body{
+  background-color: black;
+}
+.game{
+  padding-top: 6em;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
+}
+button{
+border-radius: 6px;
+box-shadow: 10px
+}
 .wrapper{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   width: 100%;
-  border: 8px solid green;
-  background-color: red;
-
+  background-color: grey;
 }
 .game-board{
-  background-color: red;
   border: 2px solid blue;
 }
 .player-one{
-  background-color: red;
+  background-color: #9f45b0;
   border: 2px solid blue;
+  width: 100%;
   height: 400px;
-  display: flex;
-  flex-direction: column;
-  width: 400px;
-
+  text-align: center;
 }
 .player-two{
-  background-color: red;
+  background-color: #44008b	;
   border: 2px solid blue;
-  display: flex;
-  flex-direction: column;
-  width: 20%;
+  width: 100%;
+  height: 400px;
+  text-align: center;
 }
 .a{
   background-color: green;
@@ -39,5 +47,5 @@
   position:fixed;
   height: 100%;
   width: 100%;
-  background-color: purple;
+  opacity: 100%
 }
