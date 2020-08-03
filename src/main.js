@@ -6,16 +6,19 @@ var playerOneWins = document.querySelector('.player-one');
 var playerTwoWins = document.querySelector('.player-two');
 var clearWinsButton = document.querySelector('.clear-wins');
 var clearBoardButton = document.querySelector('.clear-board');
-var whoWonSection = document.querySelector('.who-won')
+var playerOneWinsPopUp = document.querySelector('.player-one-won')
+var playerTwoWinsPopUp = document.querySelector('.player-two-won')
+var currentTurn = document.querySelector('.current-turn')
 window.addEventListener('load', function () {
   game = initGame();
   if (game.retrieveGameFromStorage() === undefined) {
     addWinstoPlayers();
-
+    displayCurrentTurn()
   }
   else {
     game.board = game.retrieveGameFromStorage()
     game.currentTurn = game.retrievePlayerFromStorage()
+    displayCurrentTurn()
     updateHTML();
     addWinstoPlayers()
   }
@@ -29,6 +32,7 @@ clearBoardButton.addEventListener('click',function(){
 })
 
 gameWrapper.addEventListener('click', function () {
+
   var location = parseInt(event.target.dataset['id']) - 1;
   if (game.board[location].closed !== true && game.board !== undefined) {
     game.checkTurn();
@@ -59,6 +63,8 @@ gameWrapper.addEventListener('click', function () {
     }else if (result === false) {
       console.log('keep goin');
       game.changeTurn();
+      displayCurrentTurn()
+
       game.saveGameToStorage()
       if (game.board === initGame().board) {
         console.log('broken')
@@ -149,16 +155,27 @@ function clearBoard(){
   })
 }
 function showWhowon(){
-  whoWonSection.classList.remove('hidden')
-  if(game.currentPlayer.id === 1){
-    whoWonSection.innerText = `Player One Won! `
+  if(game.currentPlayer.id == 1){
+    playerOneWinsPopUp.classList.remove('hidden')
   }else{
-    whoWonSection.innerText = `Player Two Won! `
-
+    playerTwoWinsPopUp.classList.remove('hidden')
   }
-  whoWonSection.classList.add(`${game.currentPlayer.icon}`)
 }
 function hideWhowon(){
-  whoWonSection.classList.add('hidden')
-  whoWonSection.remove(`${game.currentPlayer.icon}`)
+  playerOneWinsPopUp.classList.add('hidden')
+  playerTwoWinsPopUp.classList.add('hidden')
+}
+function displayCurrentTurn(){
+
+  if(game.currentPlayer === undefined || game.currentTurn === 0){
+    currentTurn.innerText = `Player One's Turn ! `
+    currentTurn.classList.remove(`${game.playerTwo.icon }`)
+    currentTurn.classList.add(`${game.playerOne.icon }`)
+
+  }else{
+    currentTurn.innerText = `Player Two's Turn! `
+    currentTurn.classList.remove(`${game.playerOne.icon }`)
+    currentTurn.classList.add(`${game.playerTwo.icon }`)
+
+  }
 }
