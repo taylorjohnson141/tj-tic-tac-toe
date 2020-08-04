@@ -9,7 +9,7 @@ var clearBoardButton = document.querySelector('.clear-board');
 var playerOneWinsPopUp = document.querySelector('.player-one-won');
 var playerTwoWinsPopUp = document.querySelector('.player-two-won');
 var currentTurn = document.querySelector('.current-turn');
-
+var drawSection = document.querySelector('.draw')
 window.addEventListener('load', function () {
   game = initGame();
   displayCurrentTurn();
@@ -48,6 +48,7 @@ gameWrapper.addEventListener('click', function () {
       game.resetBoard();
       game.removeGameFromLocalStorage();
       game = initGame();
+      showDraw()
       clearHTMLafterTwoSecond();
       clearBoard();
     }
@@ -55,7 +56,7 @@ gameWrapper.addEventListener('click', function () {
       game.currentPlayer.addWin();
       game.currentPlayer.saveWinsToStorage();
       addWinstoPlayers();
-      showWhowon();
+      showWhoWon();
       game.removeGameFromLocalStorage();
       game = initGame();
       displayCurrentTurn();
@@ -109,7 +110,7 @@ function clearHTMLafterTwoSecond() {
   addOverlay();
   window.setTimeout(clearHTML, 2000);
   window.setTimeout(removeOverlay, 2000);
-  window.setTimeout(hideWhowon, 2000);
+  window.setTimeout(hideWhoWon, 2000);
 }
 
 function disableBoard() {
@@ -150,28 +151,32 @@ function clearBoard() {
     board.icon = '';
   })
 }
-function showWhowon() {
+function showWhoWon() {
   if(game.currentPlayer.id == 1){
     playerOneWinsPopUp.classList.remove('hidden');
   }else{
     playerTwoWinsPopUp.classList.remove('hidden');
   }
 }
-function hideWhowon() {
+function hideWhoWon() {
   playerOneWinsPopUp.classList.add('hidden');
   playerTwoWinsPopUp.classList.add('hidden');
+  drawSection.classList.add('hidden')
 }
 function displayCurrentTurn() {
   console.log('current turn', game.currentTurn)
   if (game.currentTurn === 0){
-    currentTurn.innerText = `Player One's Turn ! `
+    currentTurn.innerText = `Player One's Turn!`
     currentTurn.classList.remove(`${game.playerTwo.icon }`);
     currentTurn.classList.add(`${game.playerOne.icon }`);
 
   }else {
-    currentTurn.innerText = `Player Two's Turn! `
+    currentTurn.innerText = `Player Two's Turn!`
     currentTurn.classList.remove(`${game.playerOne.icon }`);
     currentTurn.classList.add(`${game.playerTwo.icon }`);
 
   }
+}
+function showDraw() {
+  drawSection.classList.remove('hidden');
 }
