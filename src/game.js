@@ -103,35 +103,36 @@ class Game{
       }
     if (closed.length === 9) {
       return 'draw';
+    }else {
+      return false;
     }
-else{
-  return false;
-
-}
   }
+
   saveGameToStorage() {
-    localStorage.setItem('currentGame',JSON.stringify(this))
+    localStorage.setItem('currentGame', JSON.stringify(this))
   }
+
   retrieveGameFromStorage() {
-    if(localStorage.getItem('currentGame') === null ){
-      return undefined
+    if (localStorage.getItem('currentGame') === null) {
+      return undefined;
     }
-    var game = localStorage.getItem('currentGame')
-     game =  JSON.parse(game)
-     return game.board
+    var game = localStorage.getItem('currentGame');
+    game = JSON.parse(game);
+    return game.board;
   }
 
-  retrievePlayerFromStorage(){
-    if(localStorage.getItem('currentGame')!== null){
-    var game = localStorage.getItem('currentGame')
-     game =  JSON.parse(game)
-     return game.currentTurn
+  retrievePlayerFromStorage() {
+    if (localStorage.getItem('currentGame')!== null) {
+      var game = localStorage.getItem('currentGame');
+      game =  JSON.parse(game);
+      return game.currentTurn;
+    }
   }
-}
+
   removeGameFromLocalStorage() {
-    localStorage.removeItem('currentGame')
-
+    localStorage.removeItem('currentGame');
   }
+  
   resetBoard () {
     return [
       {
@@ -181,5 +182,4 @@ else{
     },
   ];
   }
-
 }
