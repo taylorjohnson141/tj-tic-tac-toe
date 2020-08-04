@@ -60,7 +60,7 @@ class Game{
       id: 9,
       icon: '',
       closed: false,
-    },
+    }
   ];
 
   }

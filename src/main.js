@@ -16,11 +16,9 @@ clearWinsButton.addEventListener('click', clearLocalStorage);
 clearBoardButton.addEventListener('click', clearCurrentBoard);
 gameWrapper.addEventListener('click', onGameClick);
 
-
-
 function initGame() {
-  var playerOne = new Player(1, 'a', 0);
-  var playerTwo = new Player(2, 'b', 0);
+  var playerOne = new Player(1, 'playerOne', 0);
+  var playerTwo = new Player(2, 'playerTwo', 0);
   return new Game(playerOne, playerTwo);
 }
 
@@ -39,7 +37,7 @@ function updateHTML() {
     return;
   }
 
-  game.board.forEach(function  (board, i) {
+  game.board.forEach(function (board, i) {
     gameBoard[i].closed = board.closed;
     if (board.icon === '') {
       return;
@@ -64,25 +62,26 @@ function disableBoard() {
 }
 
 function addOverlay() {
-  overlay.classList.remove('hidden')
+  overlay.classList.remove('hidden');
 }
 
 function removeOverlay() {
-  overlay.classList.add('hidden')
+  overlay.classList.add('hidden');;
 }
 
 function addWinstoPlayers() {
-  game.playerOne.wins = game.playerOne.retrieveWinsFromStorage()
-  game.playerTwo.wins = game.playerTwo.retrieveWinsFromStorage()
-  if (game.playerOne.wins === null || game.playerOne.wins === undefined  || isNaN(game.playerTwo.wins)){
-    game.playerOne.wins = 0
-  }
-  if (game.playerTwo.wins === null || game.playerTwo.wins === undefined || isNaN(game.playerTwo.wins) ){
-    game.playerTwo.wins = 0
+  game.playerOne.wins = game.playerOne.retrieveWinsFromStorage();
+  game.playerTwo.wins = game.playerTwo.retrieveWinsFromStorage();
+  if (game.playerOne.wins === null || game.playerOne.wins === undefined || isNaN(game.playerTwo.wins)) {
+    game.playerOne.wins = 0;
   }
 
-  playerOneWins.innerText = `Player One Wins: ${game.playerOne.wins }`;
-  playerTwoWins.innerText =  `Player Two Wins: ${game.playerTwo.wins }`;
+  if (game.playerTwo.wins === null || game.playerTwo.wins === undefined || isNaN(game.playerTwo.wins)) {
+    game.playerTwo.wins = 0;
+  }
+
+  playerOneWins.innerText = `Player One Wins: ${game.playerOne.wins}`;
+  playerTwoWins.innerText =  `Player Two Wins: ${game.playerTwo.wins}`;
 }
 
 function clearLocalStorage() {
@@ -98,9 +97,9 @@ function clearBoard() {
 }
 
 function showWhoWon() {
-  if(game.currentPlayer.id == 1){
+  if (game.currentPlayer.id == 1) {
     playerOneWinsPopUp.classList.remove('hidden');
-  }else{
+  }else {
     playerTwoWinsPopUp.classList.remove('hidden');
   }
 }
@@ -108,20 +107,20 @@ function showWhoWon() {
 function hideWhoWon() {
   playerOneWinsPopUp.classList.add('hidden');
   playerTwoWinsPopUp.classList.add('hidden');
-  drawSection.classList.add('hidden')
+  drawSection.classList.add('hidden');
 }
 
 function displayCurrentTurn() {
-  console.log('current turn', game.currentTurn)
-  if (game.currentTurn === 0){
-    currentTurn.innerText = `Player One's Turn!`
-    currentTurn.classList.remove(`${game.playerTwo.icon }`);
-    currentTurn.classList.add(`${game.playerOne.icon }`);
+  console.log('current turn', game.currentTurn);
+  if (game.currentTurn === 0) {
+    currentTurn.innerText = `Player One's Turn!`;
+    currentTurn.classList.remove(`${game.playerTwo.icon}`);
+    currentTurn.classList.add(`${game.playerOne.icon}`);
 
   }else {
-    currentTurn.innerText = `Player Two's Turn!`
-    currentTurn.classList.remove(`${game.playerOne.icon }`);
-    currentTurn.classList.add(`${game.playerTwo.icon }`);
+    currentTurn.innerText = `Player Two's Turn!`;
+    currentTurn.classList.remove(`${game.playerOne.icon}`);
+    currentTurn.classList.add(`${game.playerTwo.icon}`);
 
   }
 }
@@ -168,14 +167,14 @@ function onGameClick() {
   }
 }
 
-function clearCurrentBoard (){
+function clearCurrentBoard() {
   game.removeGameFromLocalStorage();
   game = initGame();
   displayCurrentTurn();
   clearHTML();
 }
 
-function startGame(){
+function startGame() {
   game = initGame();
   displayCurrentTurn();
 

@@ -56,13 +56,13 @@ box-shadow: 10px
   font-size: 3em;
 
 }
-.a{
+.playerOne{
   background-color: red;
 }
-.b{
+.playerTwo{
   background-color: blue;
 }
-.c{
+.draw{
   background-color: green;
   opacity: 80%;
 
