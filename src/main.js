@@ -28,7 +28,6 @@ window.addEventListener('load', function () {
 
 clearWinsButton.addEventListener('click', clearLocalStorage)
 clearBoardButton.addEventListener('click',function(){
-  game.resetBoard();
   game.removeGameFromLocalStorage();
   game = initGame();
   displayCurrentTurn();
@@ -45,13 +44,13 @@ gameWrapper.addEventListener('click', function () {
     game.board[location].closed = true;
     var result = game.checkWins();
     if (result === 'draw') {
-      game.resetBoard();
       game.removeGameFromLocalStorage();
       game = initGame();
-      showDraw()
+      showDraw();
       clearHTMLafterTwoSecond();
       clearBoard();
     }
+    
     if (result === true) {
       game.currentPlayer.addWin();
       game.currentPlayer.saveWinsToStorage();
