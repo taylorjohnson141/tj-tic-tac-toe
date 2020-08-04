@@ -8,13 +8,13 @@ header{
 }
 
 footer{
-  color:white ;
+  color:#712E8B ;
   margin-top: 50px;
   text-align: center;
-  text-shadow: 2px 2px #303030;
+  text-shadow: 3px 3px blue;
   font-size: 4em;
   opacity: 80%;
-  background-color: #712E8B;
+  background-color: #282828;
 }
 .current-turn{
   opacity: 80%;
