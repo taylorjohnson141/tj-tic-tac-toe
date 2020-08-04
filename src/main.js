@@ -9,7 +9,8 @@ var clearBoardButton = document.querySelector('.clear-board');
 var playerOneWinsPopUp = document.querySelector('.player-one-won');
 var playerTwoWinsPopUp = document.querySelector('.player-two-won');
 var currentTurn = document.querySelector('.current-turn');
-var drawSection = document.querySelector('.draw')
+var drawSection = document.querySelector('.draw');
+
 window.addEventListener('load', function () {
   game = initGame();
   displayCurrentTurn();
@@ -27,16 +28,10 @@ window.addEventListener('load', function () {
 });
 
 clearWinsButton.addEventListener('click', clearLocalStorage);
-clearBoardButton.addEventListener('click', function () {
-  game.removeGameFromLocalStorage();
-  game = initGame();
-  displayCurrentTurn();
-  clearHTML();
-});
+clearBoardButton.addEventListener('click',  clearCurrentBoard )
+gameWrapper.addEventListener('click', onGameClick);
 
-gameWrapper.addEventListener('click', onClick)
 
-  
 
 function initGame() {
   var playerOne = new Player(1, 'a', 0);
@@ -59,7 +54,7 @@ function updateHTML() {
     return;
   }
 
-  game.board.forEach(function (board, i) {
+  game.board.forEach(function  (board, i) {
     gameBoard[i].closed = board.closed;
     if (board.icon === '') {
       return;
@@ -146,7 +141,7 @@ function displayCurrentTurn() {
 function showDraw() {
   drawSection.classList.remove('hidden');
 }
-function onClick (){
+function onGameClick (){
   var location = parseInt(event.target.dataset['id']) - 1;
   if (game.board[location].closed !== true && game.board !== undefined) {
     game.checkTurn();
@@ -182,4 +177,10 @@ function onClick (){
       }
     }
   }
+}
+function clearCurrentBoard (){
+  game.removeGameFromLocalStorage();
+  game = initGame();
+  displayCurrentTurn();
+  clearHTML();
 }
