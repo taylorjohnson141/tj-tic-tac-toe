@@ -11,24 +11,9 @@ var playerTwoWinsPopUp = document.querySelector('.player-two-won');
 var currentTurn = document.querySelector('.current-turn');
 var drawSection = document.querySelector('.draw');
 
-window.addEventListener('load', function () {
-  game = initGame();
-  displayCurrentTurn();
-
-  if (game.retrieveGameFromStorage() === undefined) {
-    addWinstoPlayers();
-  }
-  else {
-    game.board = game.retrieveGameFromStorage();
-    game.currentTurn = game.retrievePlayerFromStorage();
-    displayCurrentTurn();
-    updateHTML();
-    addWinstoPlayers();
-  }
-});
-
+window.addEventListener('load', startGame);
 clearWinsButton.addEventListener('click', clearLocalStorage);
-clearBoardButton.addEventListener('click',  clearCurrentBoard )
+clearBoardButton.addEventListener('click', clearCurrentBoard);
 gameWrapper.addEventListener('click', onGameClick);
 
 
@@ -183,4 +168,19 @@ function clearCurrentBoard (){
   game = initGame();
   displayCurrentTurn();
   clearHTML();
+}
+function startGame(){
+  game = initGame();
+  displayCurrentTurn();
+
+  if (game.retrieveGameFromStorage() === undefined) {
+    addWinstoPlayers();
+  }
+  else {
+    game.board = game.retrieveGameFromStorage();
+    game.currentTurn = game.retrievePlayerFromStorage();
+    displayCurrentTurn();
+    updateHTML();
+    addWinstoPlayers();
+  }
 }
