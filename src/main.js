@@ -94,8 +94,9 @@ function clearBoard() {
   game.board.forEach(function (board, i) {
     board.closed = false;
     board.icon = '';
-  })
+  });
 }
+
 function showWhoWon() {
   if(game.currentPlayer.id == 1){
     playerOneWinsPopUp.classList.remove('hidden');
@@ -103,11 +104,13 @@ function showWhoWon() {
     playerTwoWinsPopUp.classList.remove('hidden');
   }
 }
+
 function hideWhoWon() {
   playerOneWinsPopUp.classList.add('hidden');
   playerTwoWinsPopUp.classList.add('hidden');
   drawSection.classList.add('hidden')
 }
+
 function displayCurrentTurn() {
   console.log('current turn', game.currentTurn)
   if (game.currentTurn === 0){
@@ -126,7 +129,8 @@ function displayCurrentTurn() {
 function showDraw() {
   drawSection.classList.remove('hidden');
 }
-function onGameClick (){
+
+function onGameClick() {
   var location = parseInt(event.target.dataset['id']) - 1;
   if (game.board[location].closed !== true && game.board !== undefined) {
     game.checkTurn();
@@ -163,20 +167,21 @@ function onGameClick (){
     }
   }
 }
+
 function clearCurrentBoard (){
   game.removeGameFromLocalStorage();
   game = initGame();
   displayCurrentTurn();
   clearHTML();
 }
+
 function startGame(){
   game = initGame();
   displayCurrentTurn();
 
   if (game.retrieveGameFromStorage() === undefined) {
     addWinstoPlayers();
-  }
-  else {
+  }else {
     game.board = game.retrieveGameFromStorage();
     game.currentTurn = game.retrievePlayerFromStorage();
     displayCurrentTurn();
