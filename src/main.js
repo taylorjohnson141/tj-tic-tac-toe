@@ -6,30 +6,34 @@ var playerOneWins = document.querySelector('.player-one');
 var playerTwoWins = document.querySelector('.player-two');
 var clearWinsButton = document.querySelector('.clear-wins');
 var clearBoardButton = document.querySelector('.clear-board');
-var playerOneWinsPopUp = document.querySelector('.player-one-won')
-var playerTwoWinsPopUp = document.querySelector('.player-two-won')
-var currentTurn = document.querySelector('.current-turn')
+var playerOneWinsPopUp = document.querySelector('.player-one-won');
+var playerTwoWinsPopUp = document.querySelector('.player-two-won');
+var currentTurn = document.querySelector('.current-turn');
+
 window.addEventListener('load', function () {
   game = initGame();
+  displayCurrentTurn();
+
   if (game.retrieveGameFromStorage() === undefined) {
     addWinstoPlayers();
-    displayCurrentTurn()
   }
   else {
-    game.board = game.retrieveGameFromStorage()
-    game.currentTurn = game.retrievePlayerFromStorage()
-    displayCurrentTurn()
+    game.board = game.retrieveGameFromStorage();
+    game.currentTurn = game.retrievePlayerFromStorage();
+    displayCurrentTurn();
     updateHTML();
-    addWinstoPlayers()
+    addWinstoPlayers();
   }
 });
+
 clearWinsButton.addEventListener('click', clearLocalStorage)
 clearBoardButton.addEventListener('click',function(){
-  game.resetBoard()
+  game.resetBoard();
   game.removeGameFromLocalStorage();
   game = initGame();
-  clearHTML()
-})
+  displayCurrentTurn();
+  clearHTML();
+});
 
 gameWrapper.addEventListener('click', function () {
 
@@ -40,49 +44,34 @@ gameWrapper.addEventListener('click', function () {
     gameBoard[location].classList.add(`${game.currentPlayer.icon}`);
     game.board[location].closed = true;
     var result = game.checkWins();
-    console.log('what we need to know',result)
-  if(result === 'draw') {
-      console.log('draw');
+    if (result === 'draw') {
       game.resetBoard();
       game.removeGameFromLocalStorage();
       game = initGame();
-      clearHTMLafterTwoSecond()
-      clearBoard()
-
+      clearHTMLafterTwoSecond();
+      clearBoard();
     }
     if (result === true) {
-      console.log('WIN','work' );
       game.currentPlayer.addWin();
-      game.currentPlayer.saveWinsToStorage()
-      addWinstoPlayers()
-      showWhowon()
-      game.removeGameFromLocalStorage()
+      game.currentPlayer.saveWinsToStorage();
+      addWinstoPlayers();
+      showWhowon();
+      game.removeGameFromLocalStorage();
       game = initGame();
-      clearHTMLafterTwoSecond()
-      clearBoard()
+      displayCurrentTurn();
+      clearHTMLafterTwoSecond();
     }else if (result === false) {
-      console.log('keep goin');
       game.changeTurn();
-      displayCurrentTurn()
-
-      game.saveGameToStorage()
+      displayCurrentTurn();
+      game.saveGameToStorage();
       if (game.board === initGame().board) {
-        console.log('broken')
-        return
-      } else {
-      console.log('not broken')
-      return
+        return;
+      }else {
+        return;
+      }
     }
-    }
-
-  }else {
-
-    game.board[location].closed = false;
-
-    return;
   }
-
-})
+});
 
 function initGame() {
   var playerOne = new Player(1, 'a', 0);
@@ -91,52 +80,59 @@ function initGame() {
 
 }
 function clearHTML() {
-  if (game === undefined){
-    return
+  if (game === undefined) {
+    return;
   }
+
   gameBoard.forEach(function (spot) {
-    spot.classList.remove(`${game.playerOne.icon}`,`${game.playerTwo.icon}`)
-  })
+    spot.classList.remove(`${game.playerOne.icon}`, `${game.playerTwo.icon}`);
+  });
 }
 
 function updateHTML() {
   if (game.board === undefined) {
-    return
+    return;
   }
+
   game.board.forEach(function (board, i) {
-    gameBoard[i].closed = board.closed
+    gameBoard[i].closed = board.closed;
     if (board.icon === '') {
-      return
+      return;
     }
+
     gameBoard[i].classList.add(`${board.icon}`)
 
-  })
+  });
 }
+
 function clearHTMLafterTwoSecond() {
-  addOverlay()
+  addOverlay();
   window.setTimeout(clearHTML, 2000);
   window.setTimeout(removeOverlay, 2000);
-  window.setTimeout(hideWhowon,2000)
+  window.setTimeout(hideWhowon, 2000);
 }
+
 function disableBoard() {
   gameBoard.forEach(function (spot) {
     spot.disabled = true;
   });
 }
+
 function addOverlay(){
   overlay.classList.remove('hidden')
 }
+
 function removeOverlay(){
   overlay.classList.add('hidden')
-
 }
+
 function addWinstoPlayers(){
   game.playerOne.wins = game.playerOne.retrieveWinsFromStorage()
   game.playerTwo.wins = game.playerTwo.retrieveWinsFromStorage()
-  if(game.playerOne.wins === null || game.playerOne.wins === undefined  || isNaN(game.playerTwo.wins)){
+  if (game.playerOne.wins === null || game.playerOne.wins === undefined  || isNaN(game.playerTwo.wins)){
     game.playerOne.wins = 0
   }
-  if(game.playerTwo.wins === null || game.playerTwo.wins === undefined || isNaN(game.playerTwo.wins) ){
+  if (game.playerTwo.wins === null || game.playerTwo.wins === undefined || isNaN(game.playerTwo.wins) ){
     game.playerTwo.wins = 0
   }
 
@@ -144,38 +140,38 @@ function addWinstoPlayers(){
   playerTwoWins.innerText =  `Player Two Wins: ${game.playerTwo.wins }`;
 }
 
-function clearLocalStorage(){
+function clearLocalStorage() {
   localStorage.clear();
   addWinstoPlayers();
 }
-function clearBoard(){
+function clearBoard() {
   game.board.forEach(function (board, i) {
     board.closed = false;
     board.icon = '';
   })
 }
-function showWhowon(){
+function showWhowon() {
   if(game.currentPlayer.id == 1){
-    playerOneWinsPopUp.classList.remove('hidden')
+    playerOneWinsPopUp.classList.remove('hidden');
   }else{
-    playerTwoWinsPopUp.classList.remove('hidden')
+    playerTwoWinsPopUp.classList.remove('hidden');
   }
 }
-function hideWhowon(){
-  playerOneWinsPopUp.classList.add('hidden')
-  playerTwoWinsPopUp.classList.add('hidden')
+function hideWhowon() {
+  playerOneWinsPopUp.classList.add('hidden');
+  playerTwoWinsPopUp.classList.add('hidden');
 }
-function displayCurrentTurn(){
-
-  if(game.currentPlayer === undefined || game.currentTurn === 0){
+function displayCurrentTurn() {
+  console.log('current turn', game.currentTurn)
+  if (game.currentTurn === 0){
     currentTurn.innerText = `Player One's Turn ! `
-    currentTurn.classList.remove(`${game.playerTwo.icon }`)
-    currentTurn.classList.add(`${game.playerOne.icon }`)
+    currentTurn.classList.remove(`${game.playerTwo.icon }`);
+    currentTurn.classList.add(`${game.playerOne.icon }`);
 
-  }else{
+  }else {
     currentTurn.innerText = `Player Two's Turn! `
-    currentTurn.classList.remove(`${game.playerOne.icon }`)
-    currentTurn.classList.add(`${game.playerTwo.icon }`)
+    currentTurn.classList.remove(`${game.playerOne.icon }`);
+    currentTurn.classList.add(`${game.playerTwo.icon }`);
 
   }
 }
