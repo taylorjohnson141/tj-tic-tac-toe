@@ -8,12 +8,13 @@ header{
 }
 
 footer{
-  color:#0079f2 ;
+  color:white ;
   margin-top: 50px;
   text-align: center;
   text-shadow: 2px 2px #303030;
   font-size: 4em;
-  opacity: 90%;
+  opacity: 80%;
+  background-color: #712E8B;
 }
 .current-turn{
   opacity: 80%;
@@ -28,7 +29,7 @@ footer{
 button{
   border-radius: 6px;
   box-shadow: 2px 2px black;
-  background-color: #8B008B;
+  background-color: #0E06D1;
   color:#d6daeb;
   text-shadow: 1px 1px black;
   opacity: 90%;
