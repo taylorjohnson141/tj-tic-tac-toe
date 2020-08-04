@@ -1,29 +1,32 @@
 body{
   background-image: url("https://imgsrc.hubblesite.org/hvi/uploads/image_file/image_attachment/32180/STScI-H-p2015a-q-2230x1671.png");
-
 }
+
 header{
-font-size: 3em;
-
-text-align: center;
+  font-size: 3em;
+  text-align: center;
 }
+
 footer{
-   color:#F0FFFF;
-   margin-top: 50px;
-   text-align: center;
-   text-shadow: 1px 1px blue;
+  color:#F0FFFF;
+  margin-top: 50px;
+  text-align: center;
+  text-shadow: 1px 1px blue;
   font-size: 4em;
 }
+
 .game{
   padding-top: 5em;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 20px;
 }
+
 button{
-border-radius: 6px;
-box-shadow: 10px
+  border-radius: 6px;
+  box-shadow: 10px
 }
+
 .wrapper{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -31,9 +34,11 @@ box-shadow: 10px
   background-color: white;
   opacity: 40%;
 }
+
 .game-board{
   border: 2px solid #8373AF;
 }
+
 .player-one{
   background-color: #C3CEEA;
   width: 100%;
@@ -42,11 +47,9 @@ box-shadow: 10px
   opacity: 40%;
   font-size: 3em;
   color:red;
-
-
 }
-.player-two{
 
+.player-two{
   opacity: 40%;
   background-color: #E1C9CF	;
   color:blue;
@@ -54,22 +57,25 @@ box-shadow: 10px
   height: 400px;
   text-align: center;
   font-size: 3em;
-
 }
-.playerOne{
+
+.playerOneToken{
   background-color: red;
 }
-.playerTwo{
+
+.playerTwoToken{
   background-color: blue;
 }
+
 .draw{
   background-color: green;
   opacity: 80%;
-
 }
+
 .hidden{
   display: none;
 }
+
 .overlay{
   position:fixed;
   height: 100%;
