@@ -26,59 +26,24 @@ window.addEventListener('load', function () {
   }
 });
 
-clearWinsButton.addEventListener('click', clearLocalStorage)
-clearBoardButton.addEventListener('click',function(){
+clearWinsButton.addEventListener('click', clearLocalStorage);
+clearBoardButton.addEventListener('click', function () {
   game.removeGameFromLocalStorage();
   game = initGame();
   displayCurrentTurn();
   clearHTML();
 });
 
-gameWrapper.addEventListener('click', function () {
+gameWrapper.addEventListener('click', onClick)
 
-  var location = parseInt(event.target.dataset['id']) - 1;
-  if (game.board[location].closed !== true && game.board !== undefined) {
-    game.checkTurn();
-    game.board[location].icon = game.currentPlayer.icon;
-    gameBoard[location].classList.add(`${game.currentPlayer.icon}`);
-    game.board[location].closed = true;
-    var result = game.checkWins();
-    if (result === 'draw') {
-      game.removeGameFromLocalStorage();
-      game = initGame();
-      showDraw();
-      clearHTMLafterTwoSecond();
-      clearBoard();
-    }
-    
-    if (result === true) {
-      game.currentPlayer.addWin();
-      game.currentPlayer.saveWinsToStorage();
-      addWinstoPlayers();
-      showWhoWon();
-      game.removeGameFromLocalStorage();
-      game = initGame();
-      displayCurrentTurn();
-      clearHTMLafterTwoSecond();
-    }else if (result === false) {
-      game.changeTurn();
-      displayCurrentTurn();
-      game.saveGameToStorage();
-      if (game.board === initGame().board) {
-        return;
-      }else {
-        return;
-      }
-    }
-  }
-});
+  
 
 function initGame() {
   var playerOne = new Player(1, 'a', 0);
   var playerTwo = new Player(2, 'b', 0);
   return new Game(playerOne, playerTwo);
-
 }
+
 function clearHTML() {
   if (game === undefined) {
     return;
@@ -118,15 +83,15 @@ function disableBoard() {
   });
 }
 
-function addOverlay(){
+function addOverlay() {
   overlay.classList.remove('hidden')
 }
 
-function removeOverlay(){
+function removeOverlay() {
   overlay.classList.add('hidden')
 }
 
-function addWinstoPlayers(){
+function addWinstoPlayers() {
   game.playerOne.wins = game.playerOne.retrieveWinsFromStorage()
   game.playerTwo.wins = game.playerTwo.retrieveWinsFromStorage()
   if (game.playerOne.wins === null || game.playerOne.wins === undefined  || isNaN(game.playerTwo.wins)){
@@ -144,6 +109,7 @@ function clearLocalStorage() {
   localStorage.clear();
   addWinstoPlayers();
 }
+
 function clearBoard() {
   game.board.forEach(function (board, i) {
     board.closed = false;
@@ -176,6 +142,44 @@ function displayCurrentTurn() {
 
   }
 }
+
 function showDraw() {
   drawSection.classList.remove('hidden');
+}
+function onClick (){
+  var location = parseInt(event.target.dataset['id']) - 1;
+  if (game.board[location].closed !== true && game.board !== undefined) {
+    game.checkTurn();
+    game.board[location].icon = game.currentPlayer.icon;
+    gameBoard[location].classList.add(`${game.currentPlayer.icon}`);
+    game.board[location].closed = true;
+    var result = game.checkWins();
+    if (result === 'draw') {
+      game.removeGameFromLocalStorage();
+      game = initGame();
+      showDraw();
+      clearHTMLafterTwoSecond();
+      clearBoard();
+    }
+
+    if (result === true) {
+      game.currentPlayer.addWin();
+      game.currentPlayer.saveWinsToStorage();
+      addWinstoPlayers();
+      showWhoWon();
+      game.removeGameFromLocalStorage();
+      game = initGame();
+      displayCurrentTurn();
+      clearHTMLafterTwoSecond();
+    }else if (result === false) {
+      game.changeTurn();
+      displayCurrentTurn();
+      game.saveGameToStorage();
+      if (game.board === initGame().board) {
+        return;
+      }else {
+        return;
+      }
+    }
+  }
 }
