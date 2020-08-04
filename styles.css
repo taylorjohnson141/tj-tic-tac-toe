@@ -8,10 +8,10 @@ header{
 }
 
 footer{
-  color:#F0FFFF;
+  color:#0079f2 ;
   margin-top: 50px;
   text-align: center;
-  text-shadow: 5px 5px #5DA4DD;
+  text-shadow: 2px 2px #303030;
   font-size: 4em;
   opacity: 90%;
 }
@@ -28,8 +28,9 @@ footer{
 button{
   border-radius: 6px;
   box-shadow: 2px 2px black;
-  background-color: #7464B6;
+  background-color: #8B008B;
   color:#d6daeb;
+  text-shadow: 1px 1px black;
   opacity: 90%;
 }
 
