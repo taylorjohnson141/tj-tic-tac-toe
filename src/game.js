@@ -104,21 +104,82 @@ class Game{
     if (closed.length === 9) {
       return 'draw';
     }
+else{
+  return false;
 
-    return false;
+}
   }
   saveGameToStorage() {
     localStorage.setItem('currentGame',JSON.stringify(this))
   }
   retrieveGameFromStorage() {
-    if(localStorage.getItem('currentGame')!== null){
+    if(localStorage.getItem('currentGame') === null ){
+      return undefined
+    }
     var game = localStorage.getItem('currentGame')
      game =  JSON.parse(game)
      return game.board
   }
+
+  retrievePlayerFromStorage(){
+    if(localStorage.getItem('currentGame')!== null){
+    var game = localStorage.getItem('currentGame')
+     game =  JSON.parse(game)
+     return game.currentTurn
   }
+}
   removeGameFromLocalStorage() {
     localStorage.removeItem('currentGame')
+
+  }
+  resetBoard () {
+    return [
+      {
+        id: 1,
+        icon: '',
+        closed: false,
+      },
+      {
+        id: 2,
+        icon: '',
+        closed: false,
+      },
+      {
+        id: 3,
+        icon: '',
+        closed: false,
+      },
+      {
+        id: 4,
+        icon: '',
+        closed: false,
+      },
+      {
+        id: 5,
+        icon: '',
+        closed: false,
+      },
+      {
+        id: 6,
+        icon: '',
+        closed: false,
+      },
+      {
+        id: 7,
+        icon: '',
+        closed: false,
+      },
+      {
+        id: 8,
+        icon: '',
+        closed: false,
+      },
+      {
+      id: 9,
+      icon: '',
+      closed: false,
+    },
+  ];
   }
 
 }

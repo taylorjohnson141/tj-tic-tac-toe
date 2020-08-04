@@ -8,10 +8,11 @@
   <title>Tic-Tac Toe</title>
 </head>
 <body>
-
+  <header class = 'current-turn'> Player Ones turn:</header>
+  <main class = 'game'>
   <aside class="player-one">Player One Wins:</aside>
-  <div class = 'overlay hidden'></div>
   <section class = 'wrapper'>
+    <div class = 'overlay hidden'></div>
     <div class="game-board" data-id = '1'>b</div>
     <div class="game-board"  data-id = '2'>b</div>
     <div class="game-board"  data-id = '3'>b</div>
@@ -21,13 +22,18 @@
     <div class="game-board"  data-id = '7'>b</div>
     <div class="game-board"  data-id = '8'>b</div>
     <div class="game-board" data-id = '9'>b</div>
-</section>
+  </section>
+
+  <aside class = "player-two">Player Two Wins:</aside>
+  <div class = 'player-one-won hidden a '> Player One Wins</div>
   <button class ="clear-wins">Clear Wins</button>
   <button class ="clear-board">Clear Board</button>
-  <aside class = "player-two">Player Two Wins:</aside>
-  <script src="src/player.js" charset="utf-8"></script>
-  <script src="src/game.js" charset="utf-8"></script>
-  <script src="src/main.js" charset="utf-8"></script>
+  <div class = 'player-two-won hidden b'> Player Two Wins</div>
+
+</main>
+<footer>Intergala tic tac toe</footer>
+
+<div class = 'who-won hidden'></div>
 
 </body>
 <script src="src/player.js" charset="utf-8"></script>
