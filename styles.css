@@ -13,8 +13,11 @@ footer{
   text-align: center;
   text-shadow: 5px 5px #5DA4DD;
   font-size: 4em;
+  opacity: 90%;
 }
-
+.current-turn{
+  opacity: 80%;
+}
 .game{
   padding-top: 5em;
   display: grid;
@@ -26,14 +29,15 @@ button{
   border-radius: 6px;
   box-shadow: 2px 2px black;
   background-color: #7464B6;
-  color:black;
+  color:#d6daeb;
+  opacity: 90%;
 }
 
 .wrapper{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   width: 100%;
-  background-color: white;
+  background-color: #d6daeb;
   opacity: 40%;
 }
 
@@ -47,7 +51,7 @@ button{
   height: 400px;
   text-align: center;
   opacity: 60%;
-  box-shadow: 16px -32px #914851 ;
+  box-shadow: 16px -25px #914851 ;
   font-size: 3em;
   color:red;
 }
@@ -56,7 +60,7 @@ button{
   opacity: 60%;
   background-color: #E1C9CF	;
   color:blue;
-  box-shadow: -16px -32px ;
+  box-shadow: -16px -25px #3289FF;
   width: 100%;
   height: 400px;
   text-align: center;
@@ -69,6 +73,7 @@ button{
 
 .playerTwoToken{
   background-color: blue;
+  color:snow;
 }
 
 .draw{

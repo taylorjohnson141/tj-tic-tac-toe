@@ -17,8 +17,8 @@ clearBoardButton.addEventListener('click', clearCurrentBoard);
 gameWrapper.addEventListener('click', onGameClick);
 
 function initGame() {
-  var playerOne = new Player(1, 'playerOne', 0);
-  var playerTwo = new Player(2, 'playerTwo', 0);
+  var playerOne = new Player(1, 'playerOneToken', 0);
+  var playerTwo = new Player(2, 'playerTwoToken', 0);
   return new Game(playerOne, playerTwo);
 }
 
